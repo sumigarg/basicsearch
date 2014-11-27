@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+	<form method="post" action="/">	
+	<div id="searchArea">
+	Search Text   	
+	<input type="text" name="search" placeholder="Search .."/>
+	<input type="submit" value="Search" name="sbutton" />	
+	</div>
+	</form>
+	<hr>
+	<div id="searchResults">
+		<p>Search Results are as follows:</p>
+		<table >
+			<tr>
+				<th>Results</th>
+			</tr>
+			<% searchdata.forEach(function(sdata){ %>
+			<tr>
+				<td><a href='<%=sdata.name %>'><%=sdata.name %></a></td>
+			</tr>
+			<tr>	<td><%=sdata.pdata %> </td></tr>
+			<% }) %>
+		</table>		
+	</div>
+  </body>
+</html>

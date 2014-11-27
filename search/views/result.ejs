@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <script type="text/javascript">
+
+  	getSpellChkUrl(){
+
+
+  	}
+  </script>
+  <body>
+
+  	<% if (user){ %>
+		<p align="right">Welcome <%=user%>  <a href="/account">Account</a></p>
+		<p align="right"> <a href="/logout">Logout</a></p>
+	<%} else {%>  	
+  		<p align="right">Login with <a href="/auth/facebook">Facebook</a> / <a href="/auth/google"> Google</a></p>
+  	<% } %>
+
+  	<br>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+	<form method="post" action="/">	
+	<div id="searchArea">
+	Search Text   	
+	<input type="text" name="search" placeholder="Search .."/>
+	<input type="submit" value="Search" name="sbutton" />	
+	</div>
+	</form>
+	<hr>
+	<div id="searchResults">
+
+		<% if (erroredData[0].suggestions != ''){ %>
+
+			<p> Did you mean : <a href='/?search=<%=erroredData[0].suggestions %>'><%=erroredData[0].suggestions %></a></p>
+		<% } %>
+			
+		<table >
+			<tr>
+				<th>Results</th>
+			</tr>
+			<% searchdata.forEach(function(sdata){ %>
+				<% if (sdata.urls){ %>
+
+					<tr>
+						<td><a href='<%=sdata.urls %>'><%=sdata.titles %></a></td>
+					</tr>
+				
+					<tr><td><%=sdata.timestamp%><%=sdata.snippet%></td></tr>
+				<% } %>	
+			<% }) %>
+			
+		</table>		
+	</div>
+  </body>
+</html>
